@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<meta name="description" content="Open Mobile Seller — ስልኮች፣ ላፕቶፖችና የቴክኖሎጂ ዕቃዎችን ያግኙ።">
+<title>Open Mobile Seller | የቴክኖሎጂ መደብር</title>
+
+<style>
+:root {
+  --bg:#080d1b;
+  --panel:#10192b;
+  --panel2:#152239;
+  --text:#f4f7ff;
+  --muted:#a5b1c7;
+  --blue:#387bff;
+  --cyan:#20d8e8;
+  --border:rgba(255,255,255,.10);
+  --radius:20px;
+  --shadow:0 16px 45px rgba(0,0,0,.24);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,"Noto Sans Ethiopic",sans-serif;
+  line-height:1.65;
+}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+.container{width:min(1160px,92%);margin:auto}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+.topbar{
+  text-align:center;padding:8px 12px;
+  background:linear-gradient(90deg,#1548a6,#087f9b);
+  font-size:.85rem;
+}
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,13,27,.93);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  min-height:76px;display:flex;align-items:center;
+  justify-content:space-between;gap:18px;
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem}
+.logo-mark{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  color:#07111d;font-size:1.25rem;
+}
+.logo span small{display:block;font-size:.68rem;color:var(--muted);font-weight:500}
+.navlinks{display:flex;align-items:center;gap:22px}
+.navlinks a{font-size:.93rem;color:#dce6f7}
+.navlinks a:hover{color:var(--cyan)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{
+  background:var(--panel);border:1px solid var(--border);
+  color:white;border-radius:12px;padding:10px 13px;
+}
+.primary,.secondary{
+  display:inline-flex;justify-content:center;align-items:center;
+  gap:8px;border-radius:13px;padding:12px 18px;
+  border:0;font-weight:800;transition:.2s;
+}
+.primary{background:linear-gradient(120deg,var(--blue),#12a9d0);color:white}
+.secondary{background:var(--panel2);border:1px solid var(--border);color:white}
+.primary:hover,.secondary:hover,.icon-btn:hover{transform:translateY(-2px)}
+.hero{padding:72px 0 52px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:44px}
+.eyebrow{
+  display:inline-block;border:1px solid rgba(32,216,232,.35);
+  color:var(--cyan);background:rgba(32,216,232,.07);
+  border-radius:30px;padding:6px 12px;font-size:.83rem;
+}
+h1{font-size:clamp(2.3rem,5.5vw,4.4rem);line-height:1.12;margin:20px 0}
+.gradient-text{
+  background:linear-gradient(90deg,#57a4ff,#39e6e6);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{color:var(--muted);font-size:1.08rem;max-width:570px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:32px}
+.stat strong{display:block;font-size:1.2rem}
+.stat span{font-size:.82rem;color:var(--muted)}
+.hero-art{
+  position:relative;min-height:370px;display:grid;place-items:center;
+  border:1px solid var(--border);border-radius:30px;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 35%,#173d68 0,transparent 60%),
+             linear-gradient(145deg,#101e35,#0a1020);
+}
+.hero-art img{width:78%;height:320px;object-fit:contain;filter:drop-shadow(0 25px 25px #0008)}
+.float-label{
+  position:absolute;padding:12px 15px;border:1px solid var(--border);
+  background:#10192beF;border-radius:14px;box-shadow:var(--shadow);
+  font-size:.87rem;
+}
+.float-label.one{top:24px;left:18px}
+.float-label.two{right:16px;bottom:26px}
+section{padding:48px 0}
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:20px;margin-bottom:24px;
+}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.3rem);margin:0}
+.section-head p{margin:5px 0 0;color:var(--muted)}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.benefit{
+  padding:22px;border:1px solid var(--border);
+  background:var(--panel);border-radius:var(--radius);
+}
+.benefit .emoji{font-size:1.65rem}
+.benefit h3{margin:8px 0 3px;font-size:1.05rem}
+.benefit p{margin:0;color:var(--muted);font-size:.9rem}
+.toolbar{
+  display:grid;grid-template-columns:1fr 180px;gap:12px;margin-bottom:18px;
+}
+.search-wrap{position:relative}
+.search-wrap input{
+  width:100%;padding:14px 16px 14px 44px;
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:13px;color:white;outline:none;
+}
+.search-wrap input:focus{border-color:var(--blue)}
+.search-symbol{position:absolute;left:15px;top:10px;font-size:1.2rem;color:var(--muted)}
+.toolbar select{
+  width:100%;background:var(--panel);color:white;
+  border:1px solid var(--border);border-radius:13px;padding:12px;
+}
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+.filter{
+  border:1px solid var(--border);border-radius:30px;
+  background:var(--panel);color:#d5dfef;padding:8px 15px;
+}
+.filter.active,.filter:hover{background:var(--blue);border-color:var(--blue);color:white}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.product{
+  border:1px solid var(--border);background:var(--panel);
+  border-radius:var(--radius);overflow:hidden;transition:.25s;min-width:0;
+}
+.product:hover{transform:translateY(-5px);border-color:#387bff80;box-shadow:var(--shadow)}
+.product-image{
+  height:210px;background:linear-gradient(145deg,#1a2a42,#101729);
+  position:relative;display:grid;place-items:center;overflow:hidden;
+}
+.product-image img{width:100%;height:100%;object-fit:contain;padding:15px;transition:.3s}
+.product:hover .product-image img{transform:scale(1.05)}
+.tag{
+  position:absolute;top:12px;left:12px;background:var(--blue);
+  color:white;border-radius:8px;padding:4px 8px;font-size:.72rem;
+}
+.favorite{
+  position:absolute;right:12px;top:12px;width:36px;height:36px;
+  border:1px solid var(--border);border-radius:50%;
+  background:#080d1bd9;color:white;font-size:1.1rem;
+}
+.favorite.active{color:#ff7096}
+.product-info{padding:16px}
+.category{color:var(--cyan);font-size:.78rem}
+.product h3{font-size:1rem;line-height:1.4;margin:5px 0 8px}
+.price{font-size:1.2rem;font-weight:900}
+.old-price{font-size:.82rem;text-decoration:line-through;color:var(--muted);margin-left:5px}
+.product-bottom{display:flex;gap:8px;margin-top:14px}
+.product-bottom button{flex:1;padding:10px 8px;font-size:.84rem}
+.empty{
+  grid-column:1/-1;text-align:center;padding:45px 20px;
+  border:1px dashed var(--border);border-radius:18px;color:var(--muted);
+}
+.promo{
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:25px;
+  padding:32px;border-radius:25px;border:1px solid #397bff55;
+  background:radial-gradient(ellipse at right,#173a65,transparent 70%),var(--panel);
+}
+.promo h2{font-size:clamp(1.5rem,3vw,2.2rem);margin:0 0 8px}
+.promo p{color:var(--muted);margin:0}
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.social-card{
+  display:flex;align-items:center;gap:13px;padding:20px;
+  border:1px solid var(--border);background:var(--panel);
+  border-radius:18px;transition:.2s;
+}
+.social-card:hover{transform:translateY(-3px);border-color:#387bff80}
+.social-icon{
+  flex-shrink:0;width:48px;height:48px;display:grid;place-items:center;
+  border-radius:14px;background:var(--panel2);font-size:1.5rem;
+}
+.social-card strong{display:block}
+.social-card span{font-size:.82rem;color:var(--muted)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
+.about-panel{
+  padding:27px;background:var(--panel);border:1px solid var(--border);
+  border-radius:22px;
+}
+.about-panel h3{margin-top:0}
+details{
+  padding:17px 0;border-bottom:1px solid var(--border);
+}
+details:last-child{border-bottom:0}
+summary{cursor:pointer;font-weight:700}
+details p{color:var(--muted);margin-bottom:0}
+footer{margin-top:35px;border-top:1px solid var(--border);background:#060a14}
+.footer-grid{
+  display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:35px;padding:45px 0;
+}
+.footer-grid h3{font-size:1rem}
+.footer-grid p,.footer-grid a{font-size:.9rem;color:var(--muted)}
+.footer-links{display:grid;gap:8px}
+.footer-links a:hover{color:var(--cyan)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding:17px 0;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  color:var(--muted);font-size:.82rem;
+}
+.cart-count{
+  display:inline-grid;place-items:center;min-width:20px;height:20px;
+  border-radius:20px;background:#ff477e;color:white;font-size:.72rem;
+  padding:0 5px;margin-left:3px;
+}
+.cart-panel{
+  position:fixed;z-index:100;right:0;top:0;width:min(420px,100%);
+  height:100dvh;background:#0c1425;border-left:1px solid var(--border);
+  padding:22px;overflow-y:auto;box-shadow:-20px 0 50px #0008;
+  transform:translateX(110%);transition:transform .25s;
+}
+.cart-panel.open{transform:translateX(0)}
+.cart-overlay{
+  position:fixed;inset:0;background:#0009;z-index:90;display:none;
+}
+.cart-overlay.open{display:block}
+.cart-head{display:flex;justify-content:space-between;align-items:center}
+.cart-item{
+  display:grid;grid-template-columns:65px 1fr;gap:12px;
+  padding:15px 0;border-bottom:1px solid var(--border);
+}
+.cart-item img{width:65px;height:65px;object-fit:contain;background:var(--panel2);border-radius:10px}
+.cart-item h4{margin:0 0 5px;font-size:.9rem}
+.qty{display:flex;align-items:center;gap:10px;margin-top:7px}
+.qty button{border:1px solid var(--border);background:var(--panel2);color:white;border-radius:7px;padding:3px 10px}
+.remove{border:0;background:transparent;color:#ff7998;margin-left:6px}
+.cart-total{display:flex;justify-content:space-between;font-weight:900;font-size:1.15rem;margin:22px 0}
+.cart-checkout{width:100%}
+.cart-note{font-size:.8rem;color:var(--muted)}
+.toast{
+  position:fixed;bottom:22px;left:50%;transform:translate(-50%,120px);
+  background:#17243a;color:white;border:1px solid var(--border);
+  border-radius:12px;padding:12px 18px;z-index:150;
+  transition:transform .25s;box-shadow:var(--shadow);max-width:90%;
+}
+.toast.show{transform:translate(-50%,0)}
+.mobile-menu{display:none}
+@media(max-width:900px){
+  .navlinks{gap:12px}
+  .navlinks a{font-size:.82rem}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-grid{gap:22px}
+  .product-image{height:190px}
+}
+@media(max-width:650px){
+  .nav{min-height:65px;flex-wrap:wrap;padding:10px 0}
+  .logo{font-size:.98rem}
+  .logo-mark{width:38px;height:38px}
+  .mobile-menu{display:block}
+  .navlinks{
+    display:none;order:3;width:100%;padding:10px 0 5px;
+    flex-direction:column;align-items:stretch;gap:0;
+  }
+  .navlinks.open{display:flex}
+  .navlinks a{padding:10px;border-top:1px solid var(--border);font-size:.95rem}
+  .nav-actions{gap:5px}
+  .nav-actions .primary{padding:9px 10px;font-size:.82rem}
+  .hero{padding:42px 0 25px}
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero-art{min-height:285px}
+  .hero-art img{height:245px}
+  .stats{gap:20px}
+  section{padding:32px 0}
+  .benefits{grid-template-columns:1fr}
+  .toolbar{grid-template-columns:1fr}
+  .product-grid{gap:11px}
+  .product-image{height:150px}
+  .product-info{padding:11px}
+  .product h3{font-size:.9rem}
+  .price{font-size:1.02rem}
+  .product-bottom{flex-direction:column}
+  .product-bottom button{width:100%}
+  .social-grid{grid-template-columns:1fr}
+  .promo{grid-template-columns:1fr;padding:23px}
+  .footer-grid{grid-template-columns:1fr;gap:12px;padding:30px 0}
+  .section-head{align-items:start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+<div class="topbar">✨ እንኳን ወደ Open Mobile Seller በደህና መጡ — የቴክኖሎጂ መፍትሔዎች በአንድ ቦታ</div>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home" aria-label="Open Mobile Seller መነሻ">
+      <span class="logo-mark">O</span>
+      <span>OPEN MOBILE<small>SELLER · TECH STORE</small></span>
+    </a>
+
+    <nav class="navlinks" id="navlinks">
+      <a href="#home">መነሻ</a>
+      <a href="#products">ምርቶች</a>
+      <a href="#about">ስለ እኛ</a>
+      <a href="#social">ማህበራዊ ሚዲያ</a>
+      <a href="#contact">አግኙን</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="cartOpen" aria-label="የግዢ ቅርጫት">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a class="primary" href="#products">ግዢ ጀምር ↗</a>
+      <button class="icon-btn mobile-menu" id="menuToggle" aria-label="ምናሌ">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">⚡ YOUR TRUSTED TECH STORE</span>
+      <h1>ቴክኖሎጂን <span class="gradient-text">በቀላሉ</span> ያግኙ</h1>
+      <p>ስልኮች፣ ላፕቶፖችና የቴክኖሎጂ መለዋወጫዎች። የሚፈልጉትን ምርት ይፈልጉ፣ ወደ ቅርጫት ይጨምሩና ትዕዛዝዎን በWhatsApp ይላኩ።</p>
+      <div class="hero-buttons">
+        <a class="primary" href="#products">ምርቶችን ይመልከቱ →</a>
+        <a class="secondary" href="#contact">አግኙን</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>📱</strong><span>ዘመናዊ ስልኮች</span></div>
+        <div class="stat"><strong>💻</strong><span>ላፕቶፖች</span></div>
+        <div class="stat"><strong>🎧</strong><span>መለዋወጫዎች</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="float-label one">⚡ የቴክኖሎጂ ምርጫ</div>
+      <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=800&q=85" alt="ዘመናዊ ስማርት ስልክ" fetchpriority="high">
+      <div class="float-label two">💙 Open Mobile Seller</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container benefits">
+    <article class="benefit"><div class="emoji">📦</div><h3>ቀላል የትዕዛዝ ሂደት</h3><p>ምርትዎን ይምረጡና ትዕዛዝዎን በWhatsApp ይላኩ።</p></article>
+    <article class="benefit"><div class="emoji">💬</div><h3>ቀጥተኛ ግንኙነት</h3><p>ስለ ዋጋ፣ አቅርቦትና ሌሎች መረጃዎች ይጠይቁ።</p></article>
+    <article class="benefit"><div class="emoji">📱</div><h3>ለሞባይል የተዘጋጀ</h3><p>በስልክ፣ ታብሌትና ኮምፒውተር ይጠቀሙበት።</p></article>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <div class="section-head">
+      <div><h2>የእኛ ምርቶች</h2><p>የሚፈልጉትን ይፈልጉና ወደ ቅርጫት ይጨምሩ።</p></div>
+      <span class="muted small" id="resultCount">4 ምርቶች</span>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-symbol">⌕</span>
+        <input id="searchInput" type="search" placeholder="ስልክ፣ ላፕቶፕ ወይም ምርት ይፈልጉ..." aria-label="ምርት ፈልግ">
+      </div>
+      <select id="sortSelect" aria-label="ምርቶችን አስተካክል">
+        <option value="default">መደበኛ ቅደም ተከተል</option>
+        <option value="low">ዋጋ: ከዝቅተኛ ወደ ከፍተኛ</option>
+        <option value="high">ዋጋ: ከፍተኛ ወደ ዝቅተኛ</option>
+        <option value="name">በስም ቅደም ተከተል</option>
+      </select>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="filter active" data-category="all">ሁሉም</button>
+      <button class="filter" data-category="phone">ስልኮች</button>
+      <button class="filter" data-category="laptop">ላፕቶፖች</button>
+      <button class="filter" data-category="accessory">መለዋወጫዎች</button>
+      <button class="filter" data-category="favorite">❤️ ተወዳጆች</button>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container promo">
+    <div>
+      <h2>የሚፈልጉትን ምርት አላገኙም?</h2>
+      <p>በWhatsApp ያግኙን፤ ስለ ምርቶችና ዋጋዎች ይጠይቁ።</p>
+    </div>
+    <a class="primary" href="https://wa.me/251979600674" target="_blank" rel="noopener noreferrer">WhatsApp ያግኙን ↗</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <span class="eyebrow">ABOUT OUR STORE</span>
+      <h2>ስለ Open Mobile Seller</h2>
+      <p class="muted">Open Mobile Seller ለቴክኖሎጂ ዕቃዎች የመረጃና የትዕዛዝ መድረክ ነው። የምርቶችን ዝርዝር ማየት፣ ዋጋ ማወዳደርና ከሻጩ ጋር በቀጥታ መገናኘት ይችላሉ።</p>
+      <a class="secondary" href="#contact">ከእኛ ጋር ይገናኙ</a>
+    </div>
+    <div class="about-panel">
+      <h3>ለምን Open Mobile Seller?</h3>
+      <p>✓ ምርቶችን በቀላሉ መፈለግ</p>
+      <p>✓ ዋጋዎችን ማየት</p>
+      <p>✓ የግዢ ቅርጫት መጠቀም</p>
+      <p>✓ ትዕዛዝን በWhatsApp መላክ</p>
+      <p class="muted small">የምርት አቅርቦትና ዋጋ ከሻጩ ጋር በቀጥታ ያረጋግጡ።</p>
+    </div>
+  </div>
+</section>
+
+<section id="social">
+  <div class="container">
+    <div class="section-head">
+      <div><h2>በማህበራዊ ሚዲያ ይከተሉን</h2><p>ይገናኙን፣ ይጠይቁን፣ ከእኛ ጋር ይቆዩ።</p></div>
+    </div>
+    <div class="social-grid">
+      <a class="social-card" href="https://www.tiktok.com/@zemen_AI" target="_blank" rel="noopener noreferrer">
+        <div class="social-icon">♪</div>
+        <div><strong>TikTok</strong><span>@zemen_AI · ቪዲዮዎቻችንን ይመልከቱ</span></div>
+      </a>
+      <a class="social-card" href="https://wa.me/251979600674" target="_blank" rel="noopener noreferrer">
+        <div class="social-icon">☏</div>
+        <div><strong>WhatsApp</strong><span>0979600674 · ቀጥታ ያግኙን</span></div>
+      </a>
+      <a class="social-card" href="https://t.me/kfetew" target="_blank" rel="noopener noreferrer">
+        <div class="social-icon">➤</div>
+        <div><strong>Telegram</strong><span>@kfetew · በTelegram ይገናኙን</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-head"><div><h2>ተደጋጋሚ ጥያቄዎች</h2><p>ስለ ትዕዛዝና ምርቶች የሚያግዙ መረጃዎች።</p></div></div>
+    <div class="about-panel">
+      <details><summary>እንዴት ትዕዛዝ እልካለሁ?</summary><p>ምርት ወደ ቅርጫት ይጨምሩ፣ የቅርጫት ምልክቱን ይጫኑና “በWhatsApp ትዕዛዝ ላክ” የሚለውን ይምረጡ።</p></details>
+      <details><summary>የምርት ዋጋ ትክክለኛ ነው?</summary><p>በድረገጹ ላይ የሚታዩት ዋጋዎች የምሳሌ ዋጋዎች ሊሆኑ ይችላሉ። ከመግዛትዎ በፊት ከሻጩ ጋር ያረጋግጡ።</p></details>
+      <details><summary>በድረገጹ ላይ በቀጥታ ክፍያ ማድረግ እችላለሁ?</summary><p>ይህ ስሪት ትዕዛዝን ወደ WhatsApp ይልካል። ቀጥተኛ የክፍያ ስርዓት አልተገናኘም።</p></details>
+      <details><summary>የትዕዛዝ መረጃዬ የት ይሄዳል?</summary><p>“በWhatsApp ትዕዛዝ ላክ” ሲጫኑ የትዕዛዝ ጽሑፍ በWhatsApp ይከፈታል። ለመላክ በWhatsApp ውስጥ እርስዎ ማረጋገጥ አለብዎት።</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="container footer-grid">
+    <div>
+      <a class="logo" href="#home"><span class="logo-mark">O</span><span>OPEN MOBILE<small>SELLER · TECH STORE</small></span></a>
+      <p>ስልኮች፣ ላፕቶፖችና የቴክኖሎጂ መለዋወጫዎች።</p>
+    </div>
+    <div>
+      <h3>ፈጣን ሊንኮች</h3>
+      <div class="footer-links">
+        <a href="#home">መነሻ</a><a href="#products">ምርቶች</a>
+        <a href="#about">ስለ እኛ</a><a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div>
+      <h3>ያግኙን</h3>
+      <div class="footer-links">
+        <a href="https://wa.me/251979600674" target="_blank" rel="noopener noreferrer">WhatsApp: 0979600674</a>
+        <a href="https://www.tiktok.com/@zemen_AI" target="_blank" rel="noopener noreferrer">TikTok: @zemen_AI</a>
+        <a href="https://t.me/kfetew" target="_blank" rel="noopener noreferrer">Telegram: @kfetew</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Open Mobile Seller. All rights reserved.</span>
+    <a href="#home">ወደ ላይ ↑</a>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-panel" id="cartPanel" aria-label="የግዢ ቅርጫት" aria-hidden="true">
+  <div class="cart-head">
+    <h2>🛒 የግዢ ቅርጫት</h2>
+    <button class="icon-btn" id="cartClose" aria-label="ዝጋ">✕</button>
+  </div>
+  <p class="muted small">የመረጧቸው ምርቶች እዚህ ይታያሉ።</p>
+  <div id="cartItems"></div>
+  <div class="cart-total"><span>ጠቅላላ</span><span id="cartTotal">0 ብር</span></div>
+  <button class="primary cart-checkout" id="checkout">በWhatsApp ትዕዛዝ ላክ ↗</button>
+  <p class="cart-note">የትዕዛዝ ጽሑፉ በWhatsApp ይከፈታል። መላኩን እርስዎ ያረጋግጣሉ።</p>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+const WHATSAPP_NUMBER = "251979600674";
+
+const products = [
+  {
+    id:1, name:"iPhone 15 Pro Max",
+    category:"phone", categoryName:"ስልክ",
+    price:95000, oldPrice:null, tag:"ታዋቂ",
+    image:"https://images.unsplash.com/photo-1696446702183-cbd13d1b6e6d?auto=format&fit=crop&w=700&q=80",
+    description:"Apple iPhone"
+  },
+  {
+    id:2, name:"MacBook Pro",
+    category:"laptop", categoryName:"ላፕቶፕ",
+    price:185000, oldPrice:null, tag:"Premium",
+    image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=700&q=80",
+    description:"Apple laptop"
+  },
+  {
+    id:3, name:"Wireless Headphones",
+    category:"accessory", categoryName:"መለዋወጫ",
+    price:4500, oldPrice:null, tag:"ተወዳጅ",
+    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
+    description:"Wireless headphones"
+  },
+  {
+    id:4, name:"Samsung Galaxy",
+    category:"phone", categoryName:"ስልክ",
+    price:42000, oldPrice:null, tag:"ምርጥ",
+    image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=700&q=80",
+    description:"Samsung smartphone"
+  }
+];
+
+const money = n => new Intl.NumberFormat("en-US").format(n) + " ብር";
+
+function loadStored(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+let cart = loadStored("oms_cart_v2", []);
+let favorites = loadStored("oms_favorites_v2", []);
+let activeCategory = "all";
+
+const grid = document.getElementById("productGrid");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const cartPanel = document.getElementById("cartPanel");
+const cartOverlay = document.getElementById("cartOverlay");
+const toastEl = document.getElementById("toast");
+
+function saveState() {
+  try {
+    localStorage.setItem("oms_cart_v2", JSON.stringify(cart));
+    localStorage.setItem("oms_favorites_v2", JSON.stringify(favorites));
+  } catch (error) {
+    // The store remains usable if browser storage is unavailable.
+  }
+}
+
+let toastTimer;
+function toast(message) {
+  toastEl.textContent = message;
+  toastEl.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2500);
+}
+
+function renderProducts() {
+  let list = [...products];
+  const query = searchInput.value.trim().toLowerCase();
+
+  if (query) {
+    list = list.filter(p =>
+      (p.name + " " + p.categoryName + " " + p.description)
+        .toLowerCase().includes(query)
+    );
+  }
+
+  if (activeCategory === "favorite") {
+    list = list.filter(p => favorites.includes(p.id));
+  } else if (activeCategory !== "all") {
+    list = list.filter(p => p.category === activeCategory);
+  }
+
+  if (sortSelect.value === "low") list.sort((a,b) => a.price-b.price);
+  if (sortSelect.value === "high") list.sort((a,b) => b.price-a.price);
+  if (sortSelect.value === "name") list.sort((a,b) => a.name.localeCompare(b.name));
+
+  document.getElementById("resultCount").textContent = list.length + " ምርቶች";
+
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty">🔎 የፈለጉት ምርት አልተገኘም።<br>ሌላ ስም ይሞክሩ።</div>';
+    return;
+  }
+
+  grid.innerHTML = list.map(p => `
+    <article class="product">
+      <div class="product-image">
+        <img src="${p.image}" alt="${p.name}" loading="lazy"
+          onerror="this.onerror=null;this.src='https://placehold.co/600x400/152239/ffffff?text=Open+Mobile+Seller'">
+        <span class="tag">${p.tag}</span>
+        <button class="favorite ${favorites.includes(p.id) ? "active" : ""}"
+          data-favorite="${p.id}" aria-label="${p.name} ተወዳጅ አድርግ">
+          ${favorites.includes(p.id) ? "♥" : "♡"}
+        </button>
+      </div>
+      <div class="product-info">
+        <span class="category">${p.categoryName}</span>
+        <h3>${p.name}</h3>
+        <div class="price">${money(p.price)}</div>
+        <div class="product-bottom">
+          <button class="primary" data-add="${p.id}">🛒 ወደ ቅርጫት</button>
+          <button class="secondary" data-order="${p.id}">ይጠይቁ</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderCart() {
+  cart = cart.filter(item =>
+    products.some(p => p.id === item.id) &&
+    Number.isInteger(item.qty) && item.qty > 0
+  );
+
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById("cartCount").textContent = count;
+
+  const itemsEl = document.getElementById("cartItems");
+  if (!cart.length) {
+    itemsEl.innerHTML = '<div class="empty">🛒<br>ቅርጫትዎ ባዶ ነው።<br><a href="#products">ምርቶችን ይመልከቱ</a></div>';
+  } else {
+    itemsEl.innerHTML = cart.map(item => {
+      const p = products.find(product => product.id === item.id);
+      return `
+        <div class="cart-item">
+          <img src="${p.image}" alt="${p.name}"
+            onerror="this.onerror=null;this.src='https://placehold.co/100x100/152239/ffffff?text=Product'">
+          <div>
+            <h4>${p.name}</h4>
+            <strong>${money(p.price * item.qty)}</strong>
+            <div class="qty">
+              <button data-qty="${p.id}" data-delta="-1" aria-label="ቀንስ">−</button>
+              <span>${item.qty}</span>
+              <button data-qty="${p.id}" data-delta="1" aria-label="ጨምር">+</button>
+              <button class="remove" data-remove="${p.id}">አስወግድ</button>
+            </div>
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  const total = cart.reduce((sum,item) => {
+    const p = products.find(product => product.id === item.id);
+    return sum + (p ? p.price * item.qty : 0);
+  }, 0);
+
+  document.getElementById("cartTotal").textContent = money(total);
+  saveState();
+}
+
+function addToCart(id) {
+  const item = cart.find(i => i.id === id);
+  if (item) item.qty += 1;
+  else cart.push({id, qty:1});
+  renderCart();
+  toast("ምርቱ ወደ ቅርጫት ተጨምሯል ✓");
+}
+
+function toggleFavorite(id) {
+  favorites = favorites.includes(id)
+    ? favorites.filter(x => x !== id)
+    : [...favorites, id];
+  saveState();
+  renderProducts();
+  toast(favorites.includes(id) ? "ወደ ተወዳጆች ተጨምሯል ♥" : "ከተወዳጆች ተወግዷል");
+}
+
+function openCart() {
+  cartPanel.classList.add("open");
+  cartOverlay.classList.add("open");
+  cartPanel.setAttribute("aria-hidden", "false");
+}
+
+function closeCart() {
+  cartPanel.classList.remove("open");
+  cartOverlay.classList.remove("open");
+  cartPanel.setAttribute("aria-hidden", "true");
+}
+
+function orderOne(id) {
+  const p = products.find(item => item.id === id);
+  if (!p) return;
+  const text = `ሰላም Open Mobile Seller! ስለዚህ ምርት መረጃ እፈልጋለሁ፦\n\nምርት: ${p.name}\nየሚታየው ዋጋ: ${money(p.price)}\n\nየአሁኑን ዋጋና አቅርቦት ያረጋግጡልኝ።`;
+  window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank", "noopener,noreferrer");
+}
+
+function checkout() {
+  if (!cart.length) {
+    toast("እባክዎ መጀመሪያ ምርት ይጨምሩ።");
+    return;
+  }
+
+  const lines = cart.map(item => {
+    const p = products.find(product => product.id === item.id);
+    return `• ${p.name} × ${item.qty} = ${money(p.price * item.qty)}`;
+  });
+
+  const total = cart.reduce((sum,item) => {
+    const p = products.find(product => product.id === item.id);
+    return sum + (p ? p.price * item.qty : 0);
+  }, 0);
+
+  const message =
+    "ሰላም Open Mobile Seller! ይህን ትዕዛዝ ማረጋገጥ እፈልጋለሁ፦\n\n" +
+    lines.join("\n") +
+    "\n\nጠቅላላ የሚታየው ዋጋ: " + money(total) +
+    "\n\nእባክዎ የምርቶቹን አቅርቦት፣ የመጨረሻ ዋጋና የመላኪያ መረጃ ያረጋግጡልኝ።";
+
+  window.open(
+    "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message),
+    "_blank", "noopener,noreferrer"
+  );
+}
+
+grid.addEventListener("click", event => {
+  const add = event.target.closest("[data-add]");
+  const favorite = event.target.closest("[data-favorite]");
+  const order = event.target.closest("[data-order]");
+
+  if (add) addToCart(Number(add.dataset.add));
+  if (favorite) toggleFavorite(Number(favorite.dataset.favorite));
+  if (order) orderOne(Number(order.dataset.order));
+});
+
+document.getElementById("cartItems").addEventListener("click", event => {
+  const qtyBtn = event.target.closest("[data-qty]");
+  const removeBtn = event.target.closest("[data-remove]");
+
+  if (qtyBtn) {
+    const id = Number(qtyBtn.dataset.qty);
+    const delta = Number(qtyBtn.dataset.delta);
+    const item = cart.find(i => i.id === id);
+    if (item) {
+      item.qty += delta;
+      if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+      renderCart();
+    }
+  }
+
+  if (removeBtn) {
+    cart = cart.filter(i => i.id !== Number(removeBtn.dataset.remove));
+    renderCart();
+    toast("ምርቱ ከቅርጫት ተወግዷል።");
+  }
+});
+
+document.getElementById("filters").addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+  if (!button) return;
+  activeCategory = button.dataset.category;
+  document.querySelectorAll(".filter").forEach(btn =>
+    btn.classList.toggle("active", btn === button)
+  );
+  renderProducts();
+});
+
+searchInput.addEventListener("input", renderProducts);
+sortSelect.addEventListener("change", renderProducts);
+
+document.getElementById("cartOpen").addEventListener("click", openCart);
+document.getElementById("cartClose").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+document.getElementById("checkout").addEventListener("click", checkout);
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeCart();
+});
+
+document.getElementById("menuToggle").addEventListener("click", () => {
+  document.getElementById("navlinks").classList.toggle("open");
+});
+
+document.querySelectorAll("#navlinks a").forEach(link => {
+  link.addEventListener("click", () =>
+    document.getElementById("navlinks").classList.remove("open")
+  );
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
